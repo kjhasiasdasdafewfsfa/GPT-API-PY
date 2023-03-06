@@ -1,0 +1,19 @@
+import openai
+import os
+#Replace here with your api key
+openai.api_key = os.environ["OPENAI_API_KEY"]
+def generate_text(prompt, model, max_tokens, temperature):
+    response = openai.Completion.create(
+        engine=model,
+        prompt=prompt,
+        max_tokens=max_tokens,
+        temperature=temperature
+    )
+    return response.choices[0].text
+#Here is what you want to ask gpt
+prompt = "Hello, my name is"
+model = "text-davinci-002"
+max_tokens = 50
+temperature = 0.5
+generated_text = generate_text(prompt, model, max_tokens, temperature)
+print(generated_text)
